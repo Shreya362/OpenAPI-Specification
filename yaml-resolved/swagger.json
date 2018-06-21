@@ -11,6 +11,7 @@ tags:
   description: the movie reviewer
 - name: Reader
   description: the audience
+- name: Flying Dog
 schemes:
 - https
 paths:
