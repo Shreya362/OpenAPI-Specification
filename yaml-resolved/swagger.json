@@ -1,0 +1,76 @@
+---
+swagger: "2.0"
+info:
+  description: trying to generate server and client stubs from this!
+  version: 1.0.0
+  title: Stubs
+host: virtserver.swaggerhub.com
+basePath: /Shreya362/Stubby/1.0.0
+tags:
+- name: Reviewer
+  description: the movie reviewer
+- name: Reader
+  description: the audience
+schemes:
+- https
+paths:
+  /putUpReview:
+    post:
+      tags:
+      - Reviewer
+      summary: posts movie review
+      description: posts movie review
+      parameters:
+      - in: body
+        name: writereview
+        required: false
+        schema:
+          $ref: '#/definitions/Review'
+      responses:
+        200:
+          description: successfully posted review
+        400:
+          description: bad request
+  /getReview:
+    get:
+      tags:
+      - Reviewer
+      - Reader
+      summary: gets movie review to read
+      description: gets movie review to read
+      parameters:
+      - name: readreview
+        in: path
+        description: whether or not the user wants to read the review
+        required: true
+        type: string
+      responses:
+        200:
+          description: the user can say if the want to read the review or not
+          schema:
+            $ref: '#/definitions/inline_response_200'
+        400:
+          description: bad request
+definitions:
+  Review:
+    type: object
+    properties:
+      title:
+        type: string
+      content:
+        type: string
+      stars:
+        type: integer
+        minimum: 0
+        maximum: 5
+    example:
+      stars: 0
+      title: title
+      content: content
+  inline_response_200:
+    properties:
+      readthereview:
+        type: string
+        example: yes
+    example:
+      readthereview: yes
